@@ -54,15 +54,15 @@ int str_toprint(int, char *);
 typedef struct command_exe
 {
 	char *cmd;
-	int (*function_exe)(int, char **, char *, alias_sh *, int *);
+	int (*function_exe)(int, char **, char *, alias_sh *, int *, char **, char *);
 } command_exe;
-int command_select(const char *, char **, char *, alias_sh *, int *);
-int handle_direc(int, char **, char *, alias_sh *, int *);
-int func_exit(int, char **, char *, alias_sh *, int *);
-int export(int, char **, char *, alias_sh *, int *);
-int unsetenv(int, char **, char *, alias_sh *, int *);
-int env(int, char **, char *, alias_sh *, int *);
-int _alias(int, char **, char *, alias_sh *, int *);
+int command_select(const char *, char **, char *, alias_sh *, int *, char **, char *);
+int handle_direc(int, char **, char *, alias_sh *, int *, char **, char *);
+int func_exit(int, char **, char *, alias_sh *, int *, char **, char *);
+int export(int, char **, char *, alias_sh *, int *, char **, char *);
+int unsetenv(int, char **, char *, alias_sh *, int *, char **, char *);
+int env(int, char **, char *, alias_sh *, int *, char **, char *);
+int _alias(int, char **, char *, alias_sh *, int *, char **, char *);
 
 /* handle string functions */
 char **_strtok(char *, char *);
