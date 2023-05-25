@@ -9,7 +9,7 @@
  * @idx: index
  * Return: success
  */
-int _alias(int argc, char **args, char *name, aliases *alias, int *idx)
+int _alias(int argc, char **args, char *name, alias_sh *alias, int *idx)
 {
 	char **al;
 	int i, j;
