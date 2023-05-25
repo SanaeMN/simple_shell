@@ -37,7 +37,7 @@ char *valid_cmd(char *, char *, char **);
 int args_count(char **);
 char *check_ops(char **);
 char *_getenv(char *);
-int _handalias(aliases *, char *, int);
+int _handalias(alias_sh *, char *, int);
 int echo(char **);
 int error(char *, char **, char *, int);
 
