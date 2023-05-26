@@ -10,7 +10,7 @@ int main(int ac, char **args)
 {
 	alias_sh alias;
 	int index = 0, r_val = 0;
-	char *input = NULL, *name = args[0];
+	char *input = NULL, *name = args[0], *tp = NULL;
 
 	(void) ac;
 	alias.name = NULL;
@@ -33,6 +33,9 @@ int main(int ac, char **args)
 				write(STDOUT_FILENO, "\n", 1);
 			exit(r_val);
 		}
+		tp = _strstr(input, "#");
+		if (tp)
+			*tp = '\0';
 		if (*input != '\0' && _strcmp(input, "\n"))
 		{
 			error(name, NULL, NULL, 0);
