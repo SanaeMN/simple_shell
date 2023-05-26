@@ -13,7 +13,7 @@ void alias_check(char ***array, alias_sh *alias, int index)
 
 	while ((*array)[i])
 	{
-		n = _getalias(alias, (*array)[i], index);
+		n = _handalias(alias, (*array)[i], index);
 		if (n != -1)
 		{
 			(*array)[i] = NULL;
@@ -55,7 +55,7 @@ int handle_and(char *l, char *name, alias_sh *alias, int *index)
 		if (_strcmp(array[0], "alias"))
 			alias_check(&array, alias, *index);
 		ac = args_count(array);
-		selector = command_select(array[0], array, name, alias, index);
+		selector = command_select(array[0], array, name, alias, index, l_split, l);
 		if (ac > 0 && selector < 0)
 			break_condition = 1 - _fork(name, array);
 		else if (ac > 0)
@@ -103,7 +103,7 @@ int handle_or(char *l, char *name, alias_sh *alias, int *index)
 			alias_check(&array, alias, *index);
 		break_condition = 0;
 		ac = args_count(array);
-		selector = command_select(array[0], array, name, alias, index);
+		selector = command_select(array[0], array, name, alias, index, l_split, l);
 		if (ac > 0 && selector < 0)
 			break_condition = _fork(name, array);
 		else if (ac > 0)
@@ -131,7 +131,7 @@ int handle_semi_col(char *l, char *name, alias_sh *alias, int *index)
 	char **array, **l_split;
 	int ac, i = 0, frk = 0;
 
-	l_split = _strtok(line, ";\n");
+	l_split = _strtok(l, ";\n");
 	for (i = 0; l_split[i]; i++)
 	{
 		array = _strtok(l_split[i], " \t");
@@ -151,9 +151,9 @@ int handle_semi_col(char *l, char *name, alias_sh *alias, int *index)
 		if (_strstr(l, "alias"))
 			alias_check(&array, alias, *index);
 		ac = args_count(array);
-		if (ac > 0 && command_select(array[0], array, name, alias, index) < 0)
+		if (ac > 0 && command_select(array[0], array, name, alias, index, l_split, l) < 0)
 			_fork(name, array);
-		else if (!_strstr(line, "@") && ac == 0)
+		else if (!_strstr(l, "@") && ac == 0)
 		{
 			_free(l_split);
 			_free(array);
