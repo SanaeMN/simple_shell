@@ -1,54 +1,62 @@
 #include "main.h"
 
 /**
- * _alias - works with aliases
- * @argc: arguments count
- * @args: arguments
- * @name: program name
- * @alias: struct
- * @idx: index
- * Return: success
- */
-int _alias(int argc, char **args, char *name, alias_sh *alias, int *idx)
+* _alias - works with aliases
+* @ac: arguments count
+* @args: arguments
+* @name: program name
+* @alias: type struct
+* @index: index of argument
+* @split: split line
+* @l: line
+* Return: success
+*/
+int _alias(int ac, char **args, char *name, alias_sh *alias, int *index, char **split, char *l)
 {
-	char **al;
+	char **als;
 	int i, j;
 
 	(void) name;
-	if (argc == 1)
+	(void) split;
+	(void) l;
+	if (ac == 1)
 	{
-		for (i = 0; *idx && i < *idx; i++)
+		i = 0;
+		while (*index && i < *index)
 		{
-			print_string(1, alias[i].name), print_string(1, "='");
-			print_string(1, alias[i].value), print_string(1, "'\n");
+			str_toprint(1, alias[i].name), str_toprint(1, "='");
+			str_toprint(1, alias[i].value), str_toprint(1, "'\n");
+			i++;
 		}
 	}
-	for (i = 1; i < argc; i++)
+	i = 1;
+	while (i < ac)
 	{
-		al = _strtok(args[i], "=");
-		j = _getalias(alias, al[0], *idx);
+		als = _strtok(args[i], "=");
+		j = _handalias(alias, als[0], *index);
 		if (!_strstr(args[i], "="))
 		{
 			if (j != -1)
 			{
-				print_string(1, alias[j].name), print_string(1, "='");
-				print_string(1, alias[j].value), print_string(1, "'\n");
+				str_toprint(1, alias[j].name), str_toprint(1, "='");
+				str_toprint(1, alias[j].value), str_toprint(1, "'\n");
 			}
 			else
 				error(name, args, args[i], 10);
 		}
 		else if (j != -1)
 		{
-			alias[j].value = malloc(_strlen(al[1]) + 1 + _strlen("''"));
-			_strcpy(alias[j].value, al[1]);
+			alias[j].value = malloc(_strlen(als[1]) + 1 + _strlen("''"));
+			_strcpy(alias[j].value, als[1]);
 		}
 		else
 		{
-			alias[*idx].name = malloc(_strlen(al[0]) + 1);
-			alias[*idx].value = malloc(_strlen(al[1]) + 1 + _strlen("''"));
-			_strcpy(alias[*idx].name, al[0]);
-			_strcpy(alias[*idx].value, al[1]), (*idx)++;
+			alias[*index].name = malloc(_strlen(als[0]) + 1);
+			alias[*index].value = malloc(_strlen(als[1]) + 1 + _strlen("''"));
+			_strcpy(alias[*index].name, als[0]);
+			_strcpy(alias[*index].value, als[1]), (*index)++;
 		}
+		i++;
 	}
 	return (1);
 }
