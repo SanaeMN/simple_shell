@@ -10,8 +10,10 @@ void _free(char **array)
 	if (array == NULL)
 		return;
 	while (array[i])
+	{
 		free(array[i]);
 		i++;
+	}
 	free(array);
 }
 /**
@@ -35,7 +37,9 @@ void *_calloc(unsigned int nmb, unsigned int size)
 		return (NULL);
 	i = 0;
 	while (i < size * nmb)
+	{
 		ptr[i] = 0;
 		i++;
+	}
 	return (ptr);
 }
