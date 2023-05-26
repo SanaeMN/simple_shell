@@ -151,7 +151,8 @@ int handle_semi_col(char *l, char *name, alias_sh *alias, int *index)
 		if (_strstr(l, "alias"))
 			alias_check(&array, alias, *index);
 		ac = args_count(array);
-		if (ac > 0 && command_select(array[0], array, name, alias, index, l_split, l) < 0)
+		if (ac > 0 && command_select(array[0], array, name, alias, index,
+					l_split, l) < 0)
 			_fork(name, array);
 		else if (!_strstr(l, "@") && ac == 0)
 		{
