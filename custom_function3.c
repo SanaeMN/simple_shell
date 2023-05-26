@@ -10,7 +10,7 @@ int exit_with(char c, char *str)
 {
 	if (*str == '\0')
 		return (c == *str);
-	return (c == *str ? 1 : exists_within(c, str + 1));
+	return (c == *str ? 1 : exit_with(c, str + 1));
 }
 /**
  * _strtok - function that splits a string and returns an array
