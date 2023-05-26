@@ -28,7 +28,8 @@ int command_select(const char *cmd, char **args,
 	while (exes[j].function_exe != NULL && _strcmp(cmd, exes[j].cmd) != 0)
 		j++;
 	if (exes[j].function_exe != NULL)
-		return (exes[j].function_exe(args_count(args), args, name, alias, index, split, l));
+		return (exes[j].function_exe(args_count(args), args, name, alias,
+					index, char **split, char *l));
 	return (-1);
 }
 

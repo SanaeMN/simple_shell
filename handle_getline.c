@@ -1,95 +1,42 @@
 #include "main.h"
 
 /**
- * _strlen - function that give string length
- *
- *@str: string
- * Return: length of string
+ * _getline - function that get string to read.
+ * @l: string to read
+ * Return: string length
  */
-
-size_t _strlen(char *str)
+int _getline(char **l)
 {
-	if (!str || *str == '\0')
-		return (0);
-	return (1 + _strlen(str + 1));
+	int i;
+
+	*l = _calloc(10240, sizeof(char));
+	i = read(STDIN_FILENO, *l, 10240);
+	(*l)[i] = '\0';
+	return (i);
 }
 
 /**
- * _strcmp - function that compares two strings
- *
- *@str1: first string
- *@str2: second string
- *
- *Return: integer
- */
-int _strcmp(const char *str1, char *str2)
-{
-	for (; *str1 == *str2; str1++, str2++)
-	{
-		if (*str1 == '\0')
-			return (0);
-	}
-	return (*str1 - *str2);
-}
-/**
- * _strncmp - function that compares n characters
- * @str1: first string
- * @str2: second string
- * @nbr: number
+ * _read - function that reads an input from a file
+ * @l: line holder
+ * @args: argument source
  * Return: integer
  */
-int _strncmp(const char *str1, char *str2, int nbr)
+int _read(char **l, char **args)
 {
-	for (; nbr && *str1 == *str2; nbr--, str1++, str2++)
-		;
-	if (nbr)
-		return (*str1 - *str2);
-	return (0);
-}
-/**
- * _strstr - function that locates a substring.
- *
- * @hak: the string
- * @ndl: the string searching
- *
- * Return: location or NULL
- */
+	ssize_t i;
+	int r;
 
-char *_strstr(char *hak, char *ndl)
-{
-	int i, j;
-
-	if (*hak == '\0' && *ndl == '\0')
-		return (NULL);
-	for (i = 0; hak[i] != '\0'; i++)
+	r = open(args[1], O_RDONLY);
+	if (r == -1)
 	{
-		for (j = 0; ndl[j] != '\0'; j++)
-		{
-			if (ndl[j] != hak[i + j])
-				break;
-		}
-		if (ndl[j] == '\0')
-			return (&hak[i]);
+		error(args[0], args, NULL, 11);
+		exit(EXIT_FAILURE);
 	}
-	return (NULL);
-}
-/**
- * _memcpy - function that copies memory area.
- *
- * @dest: destination memory area
- * @src: source memory area
- * @nbr: bytes of the memory
- *
- * Return: dest
- */
-char *_memcpy(char *dest, char *src, unsigned int nbr)
-{
-	unsigned int i = 0;
-
-	while (i < nbr)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
+	*l = _calloc(10240, sizeof(char));
+	i = read(r, *l, 10240);
+	close(r);
+	while (**l == ' ' || **l == '\t')
+		(*l)++, i--;
+	(*l)[i] = '\0';
+	return (i);
 }
