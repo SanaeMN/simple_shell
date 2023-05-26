@@ -18,14 +18,13 @@ int func_exit(int ca, char **args, char *name,
 
 	(void) alias;
 	(void) index;
-	while (ca > 1 && args[1][i])
+	for (; ca > 1 && args[1][i]; i++)
 	{
 		if (args[1][i] < '0' || args[1][i] > '9')
 		{
 			error(name, args, NULL, 2);
 			return (0);
 		}
-		i++;
 	}
 	if (ca > 1)
 		i = _atoi(args[1]);
@@ -65,7 +64,7 @@ int handle_direc(int ac, char **args, char *name,
 	_strcpy(tp, path);
 	if (ac == 1)
 	{
-		str_toprint(1, path);
+		_str_toprint(1, path);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	return (1);
@@ -128,7 +127,7 @@ int export(int ac, char **args, char *name,
 int _unsetenv(int ac, char **args, char *name,
 		alias_sh *alias, int *index, char **split, char *l)
 {
-	int i = 0;
+	int i;
 
 	(void) alias;
 	(void) index;
@@ -146,14 +145,13 @@ int _unsetenv(int ac, char **args, char *name,
 	}
 	else
 	{
-		while (environ[i])
+		for (i = 0; environ[i]; i++)
 		{
 			if (_strncmp(environ[i], args[1], _strlen(args[1])) == 0)
 			{
 				free(environ[i]);
 				break;
 			}
-			i++;
 		}
 		return (1);
 	}
@@ -172,7 +170,7 @@ int _unsetenv(int ac, char **args, char *name,
 int env(int ac, char **args, char *name,
 		alias_sh *alias, int *index, char **split, char *l)
 {
-	int i = 0;
+	int i;
 
 	(void) ac;
 	(void) args;
@@ -181,11 +179,10 @@ int env(int ac, char **args, char *name,
 	(void) alias;
 	(void) index;
 	(void) l;
-	while (environ[i])
+	for (i = 0; environ[i]; i++)
 	{
-		str_toprint(1, environ[i]);
+		_str_toprint(1, environ[i]);
 		write(STDOUT_FILENO, "\n", 1);
-		i++;
 	}
 	return (1);
 }
