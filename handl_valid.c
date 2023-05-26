@@ -43,8 +43,8 @@ char *valid_cmd(char *cmd, char *name, char **array)
 			_free(path_array);
 			return (path);
 		}
+		free(path);
 	}
 	_free(path_array);
-	free(path);
 	return (NULL);
 }
