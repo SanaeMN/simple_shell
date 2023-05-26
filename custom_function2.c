@@ -49,27 +49,27 @@ int _strncmp(const char *str1, char *str2, int nbr)
 /**
  * _strstr - function that locates a substring.
  *
- * @hak: the string
- * @ndl: the string searching
+ * @haystack: the string
+ * @needle: the string searching
  *
  * Return: location or NULL
  */
 
-char *_strstr(char *hak, char *ndl)
+char *_strstr(char *haystack, char *needle)
 {
 	int i, j;
 
-	if (*hak == '\0' && *ndl == '\0')
+	if (*haystack == '\0' && *needle == '\0')
 		return (NULL);
-	for (i = 0; hak[i] != '\0'; i++)
+	for (i = 0; haystack[i] != '\0'; i++)
 	{
-		for (j = 0; ndl[j] != '\0'; j++)
+		for (j = 0; needle[j] != '\0'; j++)
 		{
-			if (ndl[j] != hak[i + j])
+			if (needle[j] != haystack[i + j])
 				break;
 		}
-		if (ndl[j] == '\0')
-			return (&hak[i]);
+		if (needle[j] == '\0')
+			return (&haystack[i]);
 	}
 	return (NULL);
 }
@@ -84,12 +84,11 @@ char *_strstr(char *hak, char *ndl)
  */
 char *_memcpy(char *dest, char *src, unsigned int nbr)
 {
-	unsigned int i = 0;
+	unsigned int i;
 
-	while (i < nbr)
+	for (i = 0; i < nbr; i++)
 	{
 		dest[i] = src[i];
-		i++;
 	}
 	return (dest);
 }
