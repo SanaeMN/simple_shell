@@ -9,9 +9,9 @@
  */
 void alias_check(char ***array, alias_sh *alias, int index)
 {
-	int i = 0, n;
+	int i, n;
 
-	while ((*array)[i])
+	for (i = 0; (*array)[i]; i++)
 	{
 		n = _handalias(alias, (*array)[i], index);
 		if (n != -1)
@@ -20,7 +20,6 @@ void alias_check(char ***array, alias_sh *alias, int index)
 			(*array)[i] = malloc(_strlen(alias[n].value) + 1);
 			_strcpy((*array)[i], alias[n].value);
 		}
-		i++;
 	}
 }
 /**
@@ -177,16 +176,13 @@ int split_line(char *l, char *name, alias_sh *alias, int *index)
 {
 	size_t old_len;
 	size_t new_len;
-	char *tp;
 
 	while (*l == ' ' || *l == '\t')
 		del(&l);
 	old_len = _strlen(l);
 	if (old_len == 1)
 		return (0);
-	tp = _strstr(l, "#");
-	if (tp)
-		*tp = '\0';
+
 	sub_replacing(l, "&&", "&");
 	new_len = _strlen(l);
 	if (new_len < old_len)
