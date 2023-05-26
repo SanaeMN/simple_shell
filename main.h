@@ -43,7 +43,7 @@ int error(char *, char **, char *, int);
 
 /* printer functions */
 int to_string(int, unsigned int);
-int str_toprint(int, char *);
+int _str_toprint(int, char *);
 /* command executers */
 
 /**
