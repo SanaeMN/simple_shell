@@ -65,7 +65,7 @@ int handle_direc(int ac, char **args, char *name,
 	_strcpy(tp, path);
 	if (ac == 1)
 	{
-		print_string(1, path);
+		str_toprint(1, path);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	return (1);
@@ -125,7 +125,7 @@ int export(int ac, char **args, char *name,
  * @l: line
  * Return: success
  */
-int unsetenv(int ac, char **args, char *name,
+int _unsetenv(int ac, char **args, char *name,
 		alias_sh *alias, int *index, char **split, char *l)
 {
 	int i = 0;
@@ -183,7 +183,7 @@ int env(int ac, char **args, char *name,
 	(void) l;
 	while (environ[i])
 	{
-		print_string(1, environ[i]);
+		str_toprint(1, environ[i]);
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
