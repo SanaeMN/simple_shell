@@ -5,14 +5,13 @@
  */
 void _free(char **array)
 {
-	int i = 0;
+	int j = 0;
 
 	if (array == NULL)
 		return;
-	while (array[i])
+	for (j = 0; array[j]; j++)
 	{
-		free(array[i]);
-		i++;
+		free(array[j]);
 	}
 	free(array);
 }
@@ -28,18 +27,17 @@ void _free(char **array)
 void *_calloc(unsigned int nmb, unsigned int size)
 {
 	char *ptr;
-	unsigned int i;
+	unsigned int j;
 
 	if (nmb == 0 || size == 0)
 		return (NULL);
 	ptr = malloc(size * nmb);
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	while (i < size * nmb)
+
+	for (j = 0; j < size * nmb; j++)
 	{
-		ptr[i] = 0;
-		i++;
+		ptr[j] = 0;
 	}
 	return (ptr);
 }
