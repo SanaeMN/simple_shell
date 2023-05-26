@@ -1,18 +1,6 @@
 #include "main.h"
 
 /**
-<<<<<<< HEAD
-* _alias - works with aliases
-* @ac: arguments count
-* @args: arguments
-* @name: program name
-* @alias: type struct
-* @index: index of argument
-* @split: split line
-* @l: line
-* Return: success
-*/
-=======
  * _alias - works with aliases
  * @ac: arguments count
  * @args: arguments
@@ -23,8 +11,8 @@
  * @l: line
  * Return: success
  */
->>>>>>> 8ba4d40643f28a9fb72a306c7b1c7a573c531b6c
-int _alias(int ac, char **args, char *name, alias_sh *alias, int *index, char **split, char *l)
+int _alias(int ac, char **args, char *name, alias_sh *alias, int *index,
+		char **split, char *l)
 {
 	char **als;
 	int i, j;
