@@ -18,7 +18,7 @@ int _fork(char *name, char **array)
 		pid = fork();
 		if (pid == 0)
 		{
-			success = execmd(array, name, path);
+			success = execute_cmd(array, name, path);
 			exit(0);
 		}
 		else
