@@ -91,20 +91,13 @@ void sub_replacing(char *str, char *old_sub, char *new_sub)
 
 int _atoi(char *str)
 {
-	int i, x;
-	unsigned int nbr;
+	int i;
+	int nbr = 0;
 
-	for (i = 0, nbr = 0, x = 1; str[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] == '-')
-			x = -x;
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			nbr = (nbr * 10) + (str[i] - '0');
-			if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
-				break;
-		}
+		n *= 10;
+		n += (str[i] - '0');
 	}
-	nbr *= x;
 	return (nbr);
 }
