@@ -56,7 +56,8 @@ typedef struct command_exe
 	char *cmd;
 	int (*function_exe)(int, char **, char *, alias_sh *, int *, char **, char *);
 } command_exe;
-int command_select(const char *, char **, char *, alias_sh *, int *, char **, char *);
+int command_select(const char *, char **, char *, alias_sh *,
+		int *, char **, char *);
 int handle_direc(int, char **, char *, alias_sh *, int *, char **, char *);
 int func_exit(int, char **, char *, alias_sh *, int *, char **, char *);
 int export(int, char **, char *, alias_sh *, int *, char **, char *);
