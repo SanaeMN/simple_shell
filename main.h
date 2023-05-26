@@ -60,7 +60,7 @@ int command_select(const char *, char **, char *, alias_sh *, int *, char **, ch
 int handle_direc(int, char **, char *, alias_sh *, int *, char **, char *);
 int func_exit(int, char **, char *, alias_sh *, int *, char **, char *);
 int export(int, char **, char *, alias_sh *, int *, char **, char *);
-int unsetenv(int, char **, char *, alias_sh *, int *, char **, char *);
+int _unsetenv(int, char **, char *, alias_sh *, int *, char **, char *);
 int env(int, char **, char *, alias_sh *, int *, char **, char *);
 int _alias(int, char **, char *, alias_sh *, int *, char **, char *);
 
