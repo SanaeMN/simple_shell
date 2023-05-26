@@ -7,16 +7,18 @@
  * @name: program name
  * @alias: struct
  * @index: index of selector
+ * @split: split line
+ * @l: line
  * Return: success
  */
 int command_select(const char *cmd, char **args,
-		char *name, alias_sh *alias, int *index)
+		char *name, alias_sh *alias, int *index, char **split, char *l)
 {
 	command_exe exes[] = {
 		{"exit", func_exit},
 		{"cd", handle_direc},
 		{"setenv", export},
-		{"unsetenv", unsetenv},
+		{"unsetenv", _unsetenv},
 		{"env", env},
 		{"alias", _alias},
 		{NULL, NULL}
@@ -26,7 +28,7 @@ int command_select(const char *cmd, char **args,
 	while (exes[j].function_exe != NULL && _strcmp(cmd, exes[j].cmd) != 0)
 		j++;
 	if (exes[j].function_exe != NULL)
-		return (exes[j].function_exe(args_count(args), args, name, alias, index));
+		return (exes[j].function_exe(args_count(args), args, name, alias, index, split, l));
 	return (-1);
 }
 
