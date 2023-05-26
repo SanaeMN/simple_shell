@@ -22,25 +22,21 @@ int _alias(int ac, char **args, char *name, alias_sh *alias, int *index,
 	(void) l;
 	if (ac == 1)
 	{
-		i = 0;
-		while (*index && i < *index)
+		for (i = 0; *index && i < *index; i++)
 		{
-			str_toprint(1, alias[i].name), str_toprint(1, "='");
-			str_toprint(1, alias[i].value), str_toprint(1, "'\n");
-			i++;
+			_str_toprint(1, alias[i].name), _str_toprint(1, "='");
+			_str_toprint(1, alias[i].value), _str_toprint(1, "'\n");
 		}
 	}
-	i = 1;
-	while (i < ac)
+	for (i = 1; i < ac; i++)
 	{
-		als = _strtok(args[i], "=");
-		j = _handalias(alias, als[0], *index);
+		als = _strtok(args[i], "="), j = _handalias(alias, als[0], *index);
 		if (!_strstr(args[i], "="))
 		{
 			if (j != -1)
 			{
-				str_toprint(1, alias[j].name), str_toprint(1, "='");
-				str_toprint(1, alias[j].value), str_toprint(1, "'\n");
+				_str_toprint(1, alias[j].name), _str_toprint(1, "='");
+				_str_toprint(1, alias[j].value), _str_toprint(1, "'\n");
 			}
 			else
 				error(name, args, args[i], 10);
@@ -57,7 +53,6 @@ int _alias(int ac, char **args, char *name, alias_sh *alias, int *index,
 			_strcpy(alias[*index].name, als[0]);
 			_strcpy(alias[*index].value, als[1]), (*index)++;
 		}
-		i++;
 	}
 	return (1);
 }
