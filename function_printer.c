@@ -23,7 +23,7 @@ int to_string(int i, unsigned int nbr)
  * @i: an integer
  * Return: length of string.
  */
-int str_toprint(int i, char *str)
+int _str_toprint(int i, char *str)
 {
 	if (i == 1)
 		return (write(STDOUT_FILENO, str, _strlen(str)));
