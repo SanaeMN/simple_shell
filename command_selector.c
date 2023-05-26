@@ -29,7 +29,7 @@ int command_select(const char *cmd, char **args,
 		j++;
 	if (exes[j].function_exe != NULL)
 		return (exes[j].function_exe(args_count(args), args, name, alias,
-					index, char **split, char *l));
+					index, split, l));
 	return (-1);
 }
 
