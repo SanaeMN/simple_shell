@@ -96,8 +96,8 @@ int _atoi(char *str)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		n *= 10;
-		n += (str[i] - '0');
+		nbr *= 10;
+		nbr += (str[i] - '0');
 	}
 	return (nbr);
 }
